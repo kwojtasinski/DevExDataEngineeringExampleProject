@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build docker image
+      run: |
+        bash scripts/build.sh ci
+    - name: Run linters
+      run: |
+        docker run {{cookiecutter.package_name|lower}}:ci-development /app/scripts/lint.sh
+    - name: Run unit tests
+      run: |
+        docker run {{cookiecutter.package_name|lower}}:ci-development /app/scripts/unit_test.sh

@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "data_engineering"
+version = "0.1.0"
+description = ""
+authors = ["Kacper Wojtasinski <k0wojtasinski@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+polars = {extras = ["deltalake"], version = "^0.20.31"}
+requests = "^2.32.3"
+beautifulsoup4 = "^4.12.3"
+pydantic = "^2.7.3"
+duckdb = "^1.0.0"
+xlsxwriter = "^3.2.0"
+xlsx2csv = "^0.8.2"
+ipython = "^8.25.0"
+click = "^8.1.7"
+cookiecutter = "^2.6.0"
+mimesis = "^17.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.7"
+pytest = "^8.2.1"
+vcrpy = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+de = 'data_engineering.console:cli'
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "C90", "N", "RUF"]
+ignore = ["E501"]
